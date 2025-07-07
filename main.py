@@ -60,6 +60,18 @@ class Cat(Mascot):
         super().__init__(nombre, edad, "GATO")
         self.__color = color
 
+class Veterinaria:
+
+    lista_cliente = []
+    lista_citas = []
+
+class CitaMedica:
+
+    def __init__(self, cliente, mascota):
+        self.cliente = cliente
+        self.mascota = mascota
+
+
 def registrar_cliente():
     print('Registro de cliente')
 
