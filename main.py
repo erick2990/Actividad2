@@ -23,8 +23,12 @@ class Cliente:
         self.mascotas.append(mascota) #se añade esta mascota al lisrado de animales
 
 
-    def mostrar_infor(self):
-        print(f'Hola soy {self.get_nombre()} y tengo a mi cargo las siguientes mascotas: {self.mascotas}')
+    def mostrar_info(self):
+        if len(self.mascotas) >0:
+            print(f'Hola soy {self.get_nombre()} y tengo a mi cargo las siguientes mascotas: {self.mascotas}')
+        else:
+            print(f'Hola soy {self.get_nombre()} y aun no tengo mascotas a mi cargo')
+
 
 
 
@@ -132,8 +136,12 @@ def agen_date():
 
 def history():
     print('Historial de citas')
+
+
 def vie_custom():
     print('Viendo clientes y sus mascotas')
+    for tmp in dia.lista_cliente:
+        tmp.mostrar_info()
 
 
 
