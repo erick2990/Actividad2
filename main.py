@@ -59,3 +59,50 @@ class Cat(Mascot):
     def __init__(self, nombre, edad , color):
         super().__init__(nombre, edad, "GATO")
         self.__color = color
+
+def registrar_cliente():
+    print('Registro de cliente')
+
+def registrar_mascot():
+    print('Regisrar mascota')
+
+def agen_date():
+    print('Agendar cita')
+
+def history():
+    print('Historial de citas')
+def vie_custom():
+    print('Viendo clientes y sus mascotas')
+
+
+
+fin = True
+
+
+while fin:
+
+    try:
+        print('\r\t===Clinica Veterinaria===\r\n1.Registrar nuevo cliente \r\n2.Registrar nueva mascota \r\n3.Agendar cita medica')
+        print('\r\n4.Ver historial de citas \r\n5.Ver clientes y mascotas \r\n0. Salir')
+        op = int(input())
+        match op:
+            case 0:
+                print('Gracias por usar el programa')
+                fin = False
+            case 1:
+                registrar_cliente()
+            case 2:
+                registrar_mascot()
+            case 3:
+                agen_date()
+            case 4:
+                history()
+            case 5:
+                vie_custom()
+            case _:
+                print('ERROR - Opcion incorrecta vuelva a intentarlo')
+
+
+    except ValueError:
+        print("ERROR ENTRADA INVALIDA POR FAVOR INGRESE NUEVAMENTE SU OPCION")
+
