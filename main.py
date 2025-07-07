@@ -1,12 +1,10 @@
 class Cliente:
 
-
     def __init__(self, nombre, phone, email):
         self.__nombre = nombre
         self.__phone = phone
         self.__email = email
-
-
+        self.mascotas = [] #Esto sirve para instanciar unna lista en el objeto
 
     #Metodos Setter and getters
     def get_nombre(self):
@@ -21,6 +19,12 @@ class Cliente:
         return self.__email
     def set_email(self, nuevo_correo):
         self.__email = nuevo_correo
+    def agregar_mascota(self, mascota):
+        self.mascotas.append(mascota) #se añade esta mascota al lisrado de animales
+
+
+    def mostrar_infor(self):
+        print(f'Hola soy {self.get_nombre()} y tengo a mi cargo las siguientes mascotas: {self.mascotas}')
 
 
 
@@ -59,6 +63,12 @@ class Cat(Mascot):
         super().__init__(nombre, edad, "GATO")
         self.__color = color
 
+tipos = {
+    1:"Perro",
+    2:"Gato",
+    3:"Exotico"
+}
+
 class Veterinaria:
 
     lista_cliente = []
@@ -96,6 +106,14 @@ def registrar_cliente():
 
 def registrar_mascot():
     print('Regisrar mascota')
+    fin_registro = True
+    while fin_registro:
+        nombre_Mas = input('Ingrese el nombre de su mascota: ')
+        tipo_Mas = int(input('Que tipo de animal tiene 1. Perro 2. Gato 3. Exotico'))
+        animal = tipos.get(tipo_Mas, lambda: "Opcion invalida")
+
+
+
 
 def agen_date():
     print('Agendar cita')
