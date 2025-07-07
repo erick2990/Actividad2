@@ -49,7 +49,6 @@ class Mascot:
         return self.__especie
 
 
-
 class Dog(Mascot):
 
     def __init__(self, nombre, edad, raza):
@@ -62,12 +61,6 @@ class Cat(Mascot):
     def __init__(self, nombre, edad , color):
         super().__init__(nombre, edad, "GATO")
         self.__color = color
-
-tipos = {
-    1:"Perro",
-    2:"Gato",
-    3:"Exotico"
-}
 
 class Veterinaria:
 
@@ -108,9 +101,28 @@ def registrar_mascot():
     print('Regisrar mascota')
     fin_registro = True
     while fin_registro:
-        nombre_Mas = input('Ingrese el nombre de su mascota: ')
-        tipo_Mas = int(input('Que tipo de animal tiene 1. Perro 2. Gato 3. Exotico'))
-        animal = tipos.get(tipo_Mas, lambda: "Opcion invalida")
+        try:
+            nombre_mas = input('Ingrese el nombre de su mascota: ')
+            edad_mas = int(input('Ingrese la edad de su mascota: '))
+            tipo_Mas = int(input('Que tipo de animal tiene 1. Perro 2. Gato 3. Exotico'))
+            match tipo_Mas:
+                case 1:
+                    raza_mas = input('Ingrese la raza del perro: ')
+                    perro_tmp = Dog(nombre_mas, edad_mas, raza_mas)
+
+                case 2:
+                    color_tmp = input('Ingres el color del gato: ')
+                    gato_tmp = Cat(nombre_mas, edad_mas, color_tmp)
+
+                case 3:
+                    especie = input('Ingrese la especie del animal: ')
+                    masc_tmp = Mascot(nombre_mas, edad_mas, especie)
+
+                case _:
+                    print("Opcion incorrecta por favor verifique su respuesta")
+
+        except ValueError:
+            print('Error valor incorrecto')
 
 
 
