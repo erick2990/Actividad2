@@ -73,7 +73,25 @@ class CitaMedica:
 
 
 def registrar_cliente():
+    fin_Ingreso = True
     print('Registro de cliente')
+    while fin_Ingreso:
+        try:
+            nombre_tmp = input('Ingrese el nombre del cliente: ')
+            numero_tmp = int(input('Ingrese su numero de telefo'))
+            correo_tmp = int(input('Ingrese su correo electronico'))
+            cliente_tmp = Cliente(nombre_tmp, numero_tmp, correo_tmp) #Se envian los parametros y se instancia
+            #comprobacion si existe o no
+            if cliente_tmp not in dia.lista_cliente:
+                dia.lista_cliente.append(cliente_tmp) #se añade el cliente
+
+            else:
+                print('')
+
+        except ValueError:
+            print('ERROR - Ingreso incorrecto intente de nuevo')
+
+
 
 def registrar_mascot():
     print('Regisrar mascota')
@@ -89,7 +107,8 @@ def vie_custom():
 
 
 fin = True
-
+#Se instancia un objeto de tipo veterinaria para poder iniciar una lista de clientes y de citas
+dia = Veterinaria() #se inicializa el dia para la veterinaria
 
 while fin:
 
