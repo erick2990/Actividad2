@@ -134,8 +134,16 @@ def registrar_mascot():
 def agen_date():
     print('Agendar cita')
 
+
+
+
 def history():
     print('Historial de citas')
+    if len(dia.lista_citas)>0:
+        for tmp in dia.lista_citas:
+            print(f'{tmp}')
+    else:
+        print('Aún no hay citas registradas')
 
 
 def vie_custom():
