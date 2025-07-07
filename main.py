@@ -27,9 +27,10 @@ class Cliente:
 
 class Mascot:
 
-    def __init__(self, nombre, edad):
+    def __init__(self, nombre, edad, especie):
         self.__name = nombre
         self.__age = edad
+        self.__especie = especie
 
     def get_name(self):
         return self.__name
@@ -41,8 +42,20 @@ class Mascot:
     def set_age(self, nueva):
         self.__age = nueva
 
+    def get_especie(self):
+        return self.__especie
+
+
 
 class Dog(Mascot):
 
+    def __init__(self, nombre, edad, raza):
+        super().__init__(nombre, edad, "PERRO")
+        self.__raza = raza
 
 
+class Cat(Mascot):
+
+    def __init__(self, nombre, edad , color):
+        super().__init__(nombre, edad, "GATO")
+        self.__color = color
