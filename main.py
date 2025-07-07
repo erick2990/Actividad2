@@ -5,7 +5,7 @@ class Cliente:
         self.__nombre = nombre
         self.__phone = phone
         self.__email = email
-        self.lista_mascota = [] #se inicializa una lista para este objeto en el que se guardaran las mascotas
+        self.lista_mascota = []
 
 
     #Metodos Setter and getters
@@ -22,8 +22,8 @@ class Cliente:
     def set_email(self, nuevo_correo):
         self.__email = nuevo_correo
 
-    def asociar_Mascot(self, mascota):
-        self.lista_mascota.append(mascota) #se añade a la lista que se inicializo
+    def asociar_Mascot(self, animal):
+        self.lista_mascota.append(animal) #se añade a la lista que se inicializo
 
 
 
