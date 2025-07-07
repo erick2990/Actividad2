@@ -1,10 +1,12 @@
 class Cliente:
 
-    def __init__(self, nombre, phone, email, list_mascot):
+
+    def __init__(self, nombre, phone, email):
         self.__nombre = nombre
         self.__phone = phone
         self.__email = email
-        self.__list_mascot = list_mascot
+        self.lista_mascota = [] #se inicializa una lista para este objeto en el que se guardaran las mascotas
+
 
     #Metodos Setter and getters
     def get_nombre(self):
@@ -19,10 +21,10 @@ class Cliente:
         return self.__email
     def set_email(self, nuevo_correo):
         self.__email = nuevo_correo
-    def get_mascots(self):
-        return self.__list_mascot
-    def set_mascots(self, nueva_masc):
-        self.__list_mascot.append(nueva_masc) #seagrega la nueva
+
+    def asociar_Mascot(self, mascota):
+        self.lista_mascota.append(mascota) #se añade a la lista que se inicializo
+
 
 
 class Mascot:
@@ -78,15 +80,17 @@ def registrar_cliente():
     while fin_Ingreso:
         try:
             nombre_tmp = input('Ingrese el nombre del cliente: ')
-            numero_tmp = int(input('Ingrese su numero de telefo'))
-            correo_tmp = int(input('Ingrese su correo electronico'))
+            numero_tmp = int(input('Ingrese su numero de telefono: '))
+            correo_tmp = input('Ingrese su correo electronico: ')
             cliente_tmp = Cliente(nombre_tmp, numero_tmp, correo_tmp) #Se envian los parametros y se instancia
             #comprobacion si existe o no
             if cliente_tmp not in dia.lista_cliente:
                 dia.lista_cliente.append(cliente_tmp) #se añade el cliente
+                print('Cliente añadido con exito')
+                fin_Ingreso = False
 
             else:
-                print('')
+                print('ESTA PERSONA YA EXISTE POR FAVOR VERIFIQUE LOS DATOS')
 
         except ValueError:
             print('ERROR - Ingreso incorrecto intente de nuevo')
@@ -114,7 +118,7 @@ while fin:
 
     try:
         print('\r\t===Clinica Veterinaria===\r\n1.Registrar nuevo cliente \r\n2.Registrar nueva mascota \r\n3.Agendar cita medica')
-        print('\r\n4.Ver historial de citas \r\n5.Ver clientes y mascotas \r\n0. Salir')
+        print('4.Ver historial de citas \r\n5.Ver clientes y mascotas \r\n0. Salir')
         op = int(input())
         match op:
             case 0:
