@@ -30,6 +30,12 @@ class Cliente:
                 print(cargo.get_name())
         else:
             print(f'Hola soy {self.get_nombre()} y aun no tengo mascotas a mi cargo')
+
+    def mostrar_mascotas(self):
+        numero =1
+        for masco in self.mascotas:
+            print(f'{numero}. {masco.get_name()}')
+            numero+=1
     def mostrar_nombre(self):
         print(f'{self.get_nombre()}')
 
@@ -80,6 +86,8 @@ class CitaMedica:
     def __init__(self, cliente, mascota):
         self.cliente = cliente
         self.mascota = mascota
+
+
 
 dia = Veterinaria() #se inicializa el dia para la veterinaria
 
@@ -167,7 +175,37 @@ def registrar_mascot():
 
 def agen_date():
     print('Agendar cita')
+    if len(dia.lista_citas)>=0:
+        indic =1
+        asignar =True
 
+        while asignar:
+            try:
+                print('Si el nombre de su mascota y dueño no aparece en la lista por favor registrese para agendar cita')
+                for tmp in dia.lista_cliente:
+                    print(f'{indic} Propietario: {tmp.get_nombre()} Animales: {tmp.mostrar_mascotas()}')
+                    indic += 1
+                propietario = int(input('Ingrese el numero segun el propietario'))-1
+                citado = dia.lista_cliente[propietario]
+                print(f'Seleccione que mascota del cliente {citado.get_nombre()} tendra la cita: ')
+                citado.mostrar_mascotas()
+                numero_mascota = int(input())-1
+                if numero_mascota>=0 and numero_mascota<len(citado.mascotas):
+                    paciente = citado.mascotas[numero_mascota] #se añade desde la lista del propietario
+                    cita_tmp = CitaMedica(citado, paciente)
+                    dia.lista_citas.append(cita_tmp) #se añade a la lista de citas para este dia
+                    print('La cita se agendo con exito')
+                    asignar =False
+
+                else:
+                    print('Error usted selecciono un numero de masctoa que no existe')
+
+            except ValueError:
+                print('Error valor incorrecto')
+
+
+    else:
+        print('No hay citas registradas aún')
 
 
 
@@ -182,8 +220,14 @@ def history():
 
 def vie_custom():
     print('Viendo clientes y sus mascotas')
-    for tmp in dia.lista_cliente:
-        tmp.mostrar_info()
+    if len(dia.lista_cliente)>0:
+        for tmp in dia.lista_cliente:
+            tmp.mostrar_info()
+
+    else:
+        print('Aún no hay clientes ni mascotas')
+
+
 
 
 
