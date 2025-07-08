@@ -139,7 +139,7 @@ def registrar_mascot():
                 correcto = True
 
                 for tmp in dia.lista_cliente:
-                    print(f'{cont} {tmp.get_nombre}')
+                    print(f'{cont} {tmp.get_nombre()}')
                     cont+=1
 
                 while correcto:
