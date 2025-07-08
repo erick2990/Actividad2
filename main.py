@@ -25,9 +25,13 @@ class Cliente:
 
     def mostrar_info(self):
         if len(self.mascotas) >0:
-            print(f'Hola soy {self.get_nombre()} y tengo a mi cargo las siguientes mascotas: {self.mascotas}')
+            print(f'Hola soy {self.get_nombre()} y tengo a mi cargo las siguientes mascotas: ')
+            for cargo in self.mascotas:
+                print(cargo.get_name())
         else:
             print(f'Hola soy {self.get_nombre()} y aun no tengo mascotas a mi cargo')
+    def mostrar_nombre(self):
+        print(f'{self.get_nombre()}')
 
 
 
@@ -77,9 +81,13 @@ class CitaMedica:
         self.cliente = cliente
         self.mascota = mascota
 
+dia = Veterinaria() #se inicializa el dia para la veterinaria
+
+
 
 def registrar_cliente():
     fin_Ingreso = True
+
     print('Registro de cliente')
     while fin_Ingreso:
         try:
@@ -103,20 +111,21 @@ def registrar_cliente():
 
 def registrar_mascot():
     print('Regisrar mascota')
+
     fin_registro = True
     while fin_registro:
         try:
             nombre_mas = input('Ingrese el nombre de su mascota: ')
             edad_mas = int(input('Ingrese la edad de su mascota: '))
-            tipo_Mas = int(input('Que tipo de animal tiene 1. Perro 2. Gato 3. Exotico'))
+            tipo_Mas = int(input('Que tipo de animal tiene 1. Perro 2. Gato 3. Exotico \r\n'))
             match tipo_Mas:
                 case 1:
                     raza_mas = input('Ingrese la raza del perro: ')
-                    perro_tmp = Dog(nombre_mas, edad_mas, raza_mas)
+                    masc_tmp = Dog(nombre_mas, edad_mas, raza_mas)
 
                 case 2:
                     color_tmp = input('Ingres el color del gato: ')
-                    gato_tmp = Cat(nombre_mas, edad_mas, color_tmp)
+                    masc_tmp = Cat(nombre_mas, edad_mas, color_tmp)
 
                 case 3:
                     especie = input('Ingrese la especie del animal: ')
@@ -124,6 +133,31 @@ def registrar_mascot():
 
                 case _:
                     print("Opcion incorrecta por favor verifique su respuesta")
+
+            if len(dia.lista_cliente)>0:
+                cont = 1
+                correcto = True
+
+                for tmp in dia.lista_cliente:
+                    print(f'{cont} {tmp.get_nombre}')
+                    cont+=1
+
+                while correcto:
+                    num_cliente = int(input('Ingrese el numero del cliente para asociarlo a la mascota: '))-1
+                    if num_cliente >= 0 and num_cliente < len(dia.lista_cliente):
+                        seleccionado = dia.lista_cliente[num_cliente]
+                        seleccionado.agregar_mascota(masc_tmp)
+                        print(f'Cliente {num_cliente+1} asociado con exito... ')
+                        fin_registro =False
+                        correcto = False
+                    else:
+                        print(f'Cliene {num_cliente} no existe intente nuevamente...')
+
+            else:
+                print('No existen clientes aún registrados por favor vuelva a intentarlo o registra clientes primero')
+                fin_registro =False
+
+
 
         except ValueError:
             print('Error valor incorrecto')
@@ -155,7 +189,7 @@ def vie_custom():
 
 fin = True
 #Se instancia un objeto de tipo veterinaria para poder iniciar una lista de clientes y de citas
-dia = Veterinaria() #se inicializa el dia para la veterinaria
+
 
 while fin:
 
