@@ -87,6 +87,8 @@ class CitaMedica:
         self.cliente = cliente
         self.mascota = mascota
 
+    def presentar_cita(self):
+        print(f'Propietario: {self.cliente.get_nombre()} Mascota: {self.mascota.get_name()}')
 
 
 dia = Veterinaria() #se inicializa el dia para la veterinaria
@@ -151,13 +153,19 @@ def registrar_mascot():
                     cont+=1
 
                 while correcto:
-                    num_cliente = int(input('Ingrese el numero del cliente para asociarlo a la mascota: '))-1
+                    num_cliente = int(input('Ingrese el numero del cliente para asociarlo a la mascota (0 para cancelar): '))-1
                     if num_cliente >= 0 and num_cliente < len(dia.lista_cliente):
                         seleccionado = dia.lista_cliente[num_cliente]
                         seleccionado.agregar_mascota(masc_tmp)
                         print(f'Cliente {num_cliente+1} asociado con exito... ')
-                        fin_registro =False
                         correcto = False
+                        fin_registro =False
+
+                    elif num_cliente<0:
+                        print('Regresando...')
+                        correcto =False
+                        fin_registro =False
+
                     else:
                         print(f'Cliene {num_cliente} no existe intente nuevamente...')
 
@@ -183,9 +191,10 @@ def agen_date():
             try:
                 print('Si el nombre de su mascota y dueño no aparece en la lista por favor registrese para agendar cita')
                 for tmp in dia.lista_cliente:
-                    print(f'{indic} Propietario: {tmp.get_nombre()} Animales: {tmp.mostrar_mascotas()}')
+                    print(f'{indic} Propietario: {tmp.get_nombre()} Animales: ')
+                    tmp.mostrar_mascotas()
                     indic += 1
-                propietario = int(input('Ingrese el numero segun el propietario'))-1
+                propietario = int(input('Ingrese el numero segun el propietario: '))-1
                 citado = dia.lista_cliente[propietario]
                 print(f'Seleccione que mascota del cliente {citado.get_nombre()} tendra la cita: ')
                 citado.mostrar_mascotas()
@@ -213,7 +222,7 @@ def history():
     print('Historial de citas')
     if len(dia.lista_citas)>0:
         for tmp in dia.lista_citas:
-            print(f'{tmp}')
+            tmp.presentar_cita()
     else:
         print('Aún no hay citas registradas')
 
